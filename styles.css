@@ -93,3 +93,7 @@ footer {
   margin: 10px;
   background-color: white;
 }
+
+.clickButton{
+  opacity: 0.5;
+}

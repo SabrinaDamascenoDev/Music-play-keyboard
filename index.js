@@ -1,15 +1,30 @@
 
-document.addEventListener("keydown", function () {
-    alert("hello");
+
+//Verificar qual tecla foi clicada
+document.addEventListener("keydown", function (event) {
+    let tec = event.key;
+    switchUse(tec);
+    buttonAnimation(tec);
 });
 
+
+//verificar qual card(botao) foi selecionado 
 let numberOfButtons = document.querySelectorAll(".drum").length;
     
     for (let i = 0; i <= numberOfButtons; i++){
     document.querySelectorAll(".drum")[i].addEventListener("click", function (){
         
         let num = this.innerHTML;
-        switch(num){
+        switchUse(num);
+        buttonAnimation(num);
+
+    });
+}
+
+
+    //Acionar o som denpendendo de qual tecla ou botao foi clicado
+        function switchUse(variable){
+            switch(variable){
             case 'w':
                 let music01 = new Audio("sounds/crash.mp3");
                 music01.play();
@@ -39,9 +54,27 @@ let numberOfButtons = document.querySelectorAll(".drum").length;
                 music07.play();
                 break;
         }
-    });
-}
+        }
 
 //let music01 = new Audio("sounds/crash.mp3");
 //music01.play();
 
+/*function anotheAddEventListener (typeOfEvent, callBack) {
+    let eventThatHappened = {
+        eventType: "keydown",
+        key: k,
+        durationOfTheKeydown: 2
+    }
+    if(eventThatHappened.eventType === typeOfEvent){
+        callBack(eventThatHappened);
+    }
+}*/
+function buttonAnimation(keySelect){
+    let sim = document.querySelector("." + keySelect);
+    sim.classList.add("clickButton");
+
+
+    setTimeout(() => {
+        sim.classList.remove("clickButton");
+    }, 100);
+}
